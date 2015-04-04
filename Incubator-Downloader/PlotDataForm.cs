@@ -20,8 +20,11 @@ namespace Incubator_Downloader
 
         public PlotDataForm( List<DataItem> data )
         {
+            if (data == null || data.Count == 0)
+                throw new PlotFormException("Data for plot is null or empty. Nothing to plot");
             this.data = data;
             InitializeComponent();
+//            testData();
             populateData();
         }
 
@@ -40,15 +43,48 @@ namespace Incubator_Downloader
         private void testData()
         {
             Random rand = new Random();
-            for(int i = 0; i < 300; i++)
+            int T1 = rand.Next(30, 50);
+            int T2 = rand.Next(30, 50);
+            int T3 = rand.Next(30, 50);
+            int U = rand.Next(20, 90);
+
+            double t1,t2,t3;
+            int u;
+            for (int i = 0; i < 3000; i++)
             {
-                int t1 = rand.Next(300, 500);
-                int t2 = rand.Next(300, 500);
-                int t3 = rand.Next(300, 500);
-                int u = rand.Next(20, 90);
+                if (nextBool())
+                    t1 = T1 + rand.NextDouble();
+                else
+                    t1 = T1 - rand.NextDouble();
+
+                if (nextBool())
+                    t2 = T2 + rand.NextDouble();
+                else
+                    t2 = T2 - rand.NextDouble();
+
+                if (nextBool())
+                    t3 = T3 + rand.NextDouble();
+                else
+                    t3 = T3 - rand.NextDouble();
+
+                if (nextBool())
+                    u = U + 1;
+                else
+                    u = U - 1;
+
                 string val = t1 + ";" + t2 + ";" + t3 + ";" + u;
                 data.Add( new DataItem(i, val));
             }
+        }
+
+
+        private bool nextBool()
+        {
+            Random rand = new Random();
+            int i = rand.Next(2);
+            if (i == 1)
+                return true;
+            return false;
         }
     }
 }

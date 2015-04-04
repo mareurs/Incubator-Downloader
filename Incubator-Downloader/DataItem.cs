@@ -17,16 +17,16 @@ namespace Incubator_Downloader
         public DataItem(int index, string data)
         {
             string[] values = data.Split(';');
-            int[] intValues = new int[4];
+            double[] temps = new Double[3];
 
-            for( int i = 0; i < 4; i++)
-                intValues[i] = Convert.ToInt32(values[i].Trim());
+            for( int i = 0; i < 3; i++)
+                temps[i] = Convert.ToDouble(values[i].Trim());
+            U = Convert.ToInt32(values[3]);
 
             this.index = index;
-            T1 = intValues[0] / 10.0;
-            T2 = intValues[1] / 10.0;
-            T3 = intValues[2] / 10.0;
-            U = intValues[3];
+            T1 = temps[0];
+            T2 = temps[1];
+            T3 = temps[2];
         }
 
     }

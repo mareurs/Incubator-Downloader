@@ -14,9 +14,21 @@ namespace Incubator_Downloader
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            while (true)
+            {
+                try
+                {
+                    Application.Run(new MainForm());
+                }
+                catch (System.Exception ex)
+                {
+                    if(ex is PlotFormException)
+                        MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

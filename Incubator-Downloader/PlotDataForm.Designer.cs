@@ -40,11 +40,16 @@
             // 
             // dataChart
             // 
+            chartArea1.CursorX.IsUserEnabled = true;
+            chartArea1.CursorX.IsUserSelectionEnabled = true;
+            chartArea1.CursorY.IsUserEnabled = true;
+            chartArea1.CursorY.IsUserSelectionEnabled = true;
             chartArea1.Name = "ChartArea1";
             this.dataChart.ChartAreas.Add(chartArea1);
+            this.dataChart.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.dataChart.Legends.Add(legend1);
-            this.dataChart.Location = new System.Drawing.Point(13, 13);
+            this.dataChart.Location = new System.Drawing.Point(0, 0);
             this.dataChart.Name = "dataChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
@@ -66,7 +71,7 @@
             this.dataChart.Series.Add(series2);
             this.dataChart.Series.Add(series3);
             this.dataChart.Series.Add(series4);
-            this.dataChart.Size = new System.Drawing.Size(910, 421);
+            this.dataChart.Size = new System.Drawing.Size(935, 446);
             this.dataChart.TabIndex = 0;
             this.dataChart.Text = "Data Plot";
             // 
@@ -78,6 +83,7 @@
             this.Controls.Add(this.dataChart);
             this.Name = "PlotDataForm";
             this.Text = "PlotDataForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataChart)).EndInit();
             this.ResumeLayout(false);
 
