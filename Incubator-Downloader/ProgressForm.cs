@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Incubator_Downloader
 {
-    public partial class Form1 : Form
+    public partial class ProgressForm : Form
     {
-        public Form1()
+        public ProgressForm()
         {
             InitializeComponent();
+        }
+
+        public void setPercentage(int percentage)
+        {
+            pbDownload.Value = percentage;
         }
     }
 }

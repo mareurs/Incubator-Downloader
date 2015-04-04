@@ -1,6 +1,6 @@
 ﻿namespace Incubator_Downloader
 {
-    partial class Form1
+    partial class ProgressForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.pbDownload = new System.Windows.Forms.ProgressBar();
+            this.SuspendLayout();
+            // 
+            // pbDownload
+            // 
+            this.pbDownload.Location = new System.Drawing.Point(12, 25);
+            this.pbDownload.Name = "pbDownload";
+            this.pbDownload.Size = new System.Drawing.Size(335, 31);
+            this.pbDownload.TabIndex = 0;
+            // 
+            // ProgressForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(359, 80);
+            this.Controls.Add(this.pbDownload);
+            this.Name = "ProgressForm";
+            this.Text = "Descarc";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.ProgressBar pbDownload;
     }
 }
-
