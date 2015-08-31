@@ -11,6 +11,9 @@ namespace Incubator_Downloader
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+
+        //private static readonly ILog logger = LogManager.GetLogger(typeof(Program));
+
         [STAThread]
         static void Main()
         {
@@ -27,6 +30,8 @@ namespace Incubator_Downloader
                 {
                     if(ex is PlotFormException)
                         MessageBox.Show(ex.Message);
+                    else
+                        MessageBox.Show(ex.ToString());
                 }
             }
         }

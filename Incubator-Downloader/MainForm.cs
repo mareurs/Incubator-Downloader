@@ -19,6 +19,7 @@ namespace Incubator_Downloader
         private bool dataSizeReceived = false;
         private List<DataItem> allData = new List<DataItem>();
         private int dataIndex = 0;
+        ProgressForm progressBar;
 
         public MainForm()
         {
@@ -33,7 +34,9 @@ namespace Incubator_Downloader
             cbPorts.Items.Clear();
 
             foreach(string port in ports)
-                cbPorts.Items.Add(port);    
+                cbPorts.Items.Add(port);
+            if (ports.Length > 0)
+                cbPorts.SelectedIndex = 0;
         }
 
         private void ExitClicked(object sender, EventArgs e)
@@ -57,22 +60,16 @@ namespace Incubator_Downloader
                 return;
             }
 
-            bool statusOk = false;
-            DialogResult result = DialogResult.Retry;
-            do
+            try
             {
-                try
-                {
-                    serialPort.Open();
-                    statusOk = true;
-                }
-                catch(Exception ex)
-                {
-                     result = MessageBox.Show(ex.ToString(), "Exception", MessageBoxButtons.RetryCancel);
-                }
-            } while(statusOk || result == DialogResult.Abort );
+                serialPort.Open();
+            }
+            catch(Exception ex)
+            {
+                    MessageBox.Show(ex.ToString(), "Exception", MessageBoxButtons.RetryCancel);
+            }            
 
-            ProgressForm progressBar = new ProgressForm();
+            progressBar = new ProgressForm();
             progressBar.Show();
             btnDownload.Enabled = false;
         }
@@ -80,7 +77,7 @@ namespace Incubator_Downloader
         private void serialDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             string data = serialPort.ReadExisting();
-
+            lblStatus.Text = data;
             string[] lines = data.Split('\n');
 
             int i = 0;
@@ -100,6 +97,9 @@ namespace Incubator_Downloader
                     MessageBox.Show(ex.ToString(), "Error");
                 }
             }
+            progressBar.Hide();
+            lblStatus.Text = "Descarcare efectuata";
+
         }
 
         private bool parseDataSize(string firstLine)
